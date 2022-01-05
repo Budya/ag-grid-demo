@@ -1,0 +1,22 @@
+export enum Countries {
+    Argentina = "Argentina",
+    Brazil = "Brazil",
+    Colombia = "Colombia",
+    France = "France",
+    Germany = "Germany",
+    Greece = "Greece",
+    Iceland = "Iceland",
+    Ireland = "Ireland",
+    Italy = "Italy",
+    Malta = "Malta",
+    Portugal = "Portugal",
+    Norway = "Norway",
+    Peru = "Peru",
+    Spain = "Spain",
+    Sweden = "Sweden",
+    UnitedKingdom = "United Kingdom",
+    Uriguay = "Uruguay",
+    Venezuela = "Venezuela",
+    Belgium = "Belgium",
+    Luxembourg = "Luxembourg"
+}
