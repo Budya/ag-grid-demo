@@ -1,7 +1,7 @@
 export enum SidebarOptions {
     Language = "Language",
     Country = "Country",
-    GameName = "Game name", 
+    GameName = "Game Name", 
     Bought = "Bought",
     BankBalance = "Bank Balance",
     Rating = "Rating",

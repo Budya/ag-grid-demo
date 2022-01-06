@@ -1,5 +1,5 @@
 import { SidebarOptions } from "../Models/Enums/SidebarOptions";
-
+import { locators } from "../PageObjects/MainPageLocators"
 export class MainPage {
     visit() {
        cy.visit('https://www.ag-grid.com/example.php'); 
@@ -35,7 +35,7 @@ export class MainPage {
         this.selectNameOption();
     }
 
-    private setSidebarOption(option: SidebarOptions) {
+    private setSidebarOption(option: SidebarOptions | string) {
         this.resetSidebarOptions();
         this.setSidebarDefaultOptions();        
         cy.get('#ag-36-input').clear().type(option);

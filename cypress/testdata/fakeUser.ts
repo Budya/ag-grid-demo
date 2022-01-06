@@ -8,7 +8,7 @@ const fakeUser = {
     rating: 2,
     totalWinnings: 569571,
     jan: 38031,
-    feb: 43473,
+    feb: 49473,
     mar: 68014,
     apr: 10370,
     may: 37787,
