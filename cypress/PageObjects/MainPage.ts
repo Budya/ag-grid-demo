@@ -1,5 +1,4 @@
 import { SidebarOptions } from "../Models/Enums/SidebarOptions";
-import { locators } from "../PageObjects/MainPageLocators"
 export class MainPage {
     visit() {
        cy.visit('https://www.ag-grid.com/example.php'); 
@@ -35,13 +34,13 @@ export class MainPage {
         this.selectNameOption();
     }
 
-    private setSidebarOption(option: SidebarOptions | string) {
+    private setSidebarOption(option: SidebarOptions) {
         this.resetSidebarOptions();
         this.setSidebarDefaultOptions();        
         cy.get('#ag-36-input').clear().type(option);
         cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).click();        
     }
-
+//#region Sidebar selection methods
     selectLanguageColumn() {        
         this.setSidebarOption(SidebarOptions.Language);
     }
@@ -117,5 +116,9 @@ export class MainPage {
     selectDecColumn() {
         this.setSidebarOption(SidebarOptions.Dec);
     }
+//#endregion
+
+
+
 }
 

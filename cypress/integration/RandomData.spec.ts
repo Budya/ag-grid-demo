@@ -5,7 +5,7 @@ import { locators } from '../PageObjects/MainPageLocators';
 
 
 describe('AG-grid test', function() {
-    it('Facke data assertion', function() {
+    it('Random data setting & assertion', function() {
         const mainPage = new MainPage();
         const testData = fakeUser;
         const player = new PlayerModel(testData);
@@ -80,5 +80,7 @@ describe('AG-grid test', function() {
 
         mainPage.selectDecColumn();
         cy.xpath(locators.dec).should('include.text', player.dec);
+        
+            
     });    
 });
