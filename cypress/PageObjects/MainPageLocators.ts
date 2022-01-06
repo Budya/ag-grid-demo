@@ -19,4 +19,9 @@ export const locators = {
     oct: "//div[@col-id='oct' and not(@role='columnheader')]",
     nov: "//div[@col-id='nov' and not(@role='columnheader')]",
     dec: "//div[@col-id='dec' and not(@role='columnheader')]",
+
+    // Locators for edit
+    nameEditLocator: "//div[@col-id='name' and not(@role='columnheader')]//span[@class='ag-cell-value'][1]",    
+    nameInputLocator: "//div[@col-id='name' and not(@role='columnheader')]//input",
+
 }

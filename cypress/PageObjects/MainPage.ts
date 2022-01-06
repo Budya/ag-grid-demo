@@ -1,4 +1,7 @@
 import { SidebarOptions } from "../Models/Enums/SidebarOptions";
+import { locators } from "./MainPageLocators";
+import { Countries } from "../Models/Enums/Countries";
+
 export class MainPage {
     visit() {
        cy.visit('https://www.ag-grid.com/example.php'); 
@@ -9,7 +12,7 @@ export class MainPage {
     }
 
     setNameFilter(value: string) {        
-        cy.get('.ag-input-wrapper > .ag-floating-filter-input').should('be.visible').type(value);
+        cy.get('.ag-input-wrapper > .ag-floating-filter-input').should('be.visible').clear().type(value);
     }
 
     openSidebar() {
@@ -40,7 +43,11 @@ export class MainPage {
         cy.get('#ag-36-input').clear().type(option);
         cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).click();        
     }
-//#region Sidebar selection methods
+    //#region Sidebar selection methods
+    selectNameColumn() {        
+        this.setSidebarDefaultOptions();
+    }
+    
     selectLanguageColumn() {        
         this.setSidebarOption(SidebarOptions.Language);
     }
@@ -117,7 +124,20 @@ export class MainPage {
         this.setSidebarOption(SidebarOptions.Dec);
     }
 //#endregion
+    
+    changeName(oldName: string, newName: string) {
+        this.selectNameColumn();
+        this.setNameFilter(oldName);
+        cy.wait(500)
+        cy.xpath(locators.nameEditLocator).dblclick();
+        cy.xpath(locators.nameInputLocator).clear().type(newName).type('{enter}'); 
+    }
 
+    changeCountry() {
+        this.selectLanguageColumn();
+        cy.xpath(locators.language).click().dblclick();
+        cy.xpath(`${locators.language}//div[@class='ag-picker-field-icon']`).click()
+    }
 
 
 }

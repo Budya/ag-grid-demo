@@ -26,28 +26,28 @@ export function generatePlayer(): PlayerModel {
         oct: number;
         nov: number;
         dec: number;
-    };
-
-    player.name = 'Jim Carrey';
-    player.language = randomEnumLanguage();
-    player.country = randomEnumCountry();
-    player.gameName = makeRandomString();
-    player.bought = true;
-    player.bankBalance = getRandomNumber();
-    player.rating = 5;
-    player.totalWinnings = getRandomNumber();
-    player.jan = getRandomNumber();
-    player.feb = getRandomNumber();
-    player.mar = getRandomNumber();
-    player.apr = getRandomNumber();
-    player.may = getRandomNumber();
-    player.jun = getRandomNumber();
-    player.jul = getRandomNumber();
-    player.aug = getRandomNumber();
-    player.sep = getRandomNumber();
-    player.oct = getRandomNumber();
-    player.nov = getRandomNumber();
-    player.dec = getRandomNumber();
+    } = {
+        name: 'Jim Carrey',
+        language: randomEnumLanguage(),
+        country: randomEnumCountry(),
+        gameName: makeRandomString(),
+        bought: true,
+        bankBalance: getRandomNumber(),
+        rating: 5,
+        totalWinnings: getRandomNumber(),
+        jan: getRandomNumber(),
+        feb: getRandomNumber(),
+        mar: getRandomNumber(),
+        apr: getRandomNumber(),
+        may: getRandomNumber(),
+        jun: getRandomNumber(),
+        jul: getRandomNumber(),
+        aug: getRandomNumber(),
+        sep: getRandomNumber(),
+        oct: getRandomNumber(),
+        nov: getRandomNumber(),
+        dec: getRandomNumber()
+    }
 
     return new PlayerModel(player);
 }
