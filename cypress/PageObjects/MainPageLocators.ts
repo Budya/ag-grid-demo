@@ -5,7 +5,7 @@ export const locators = {
     bought: "//div[@col-id='game.bought' and not(@role='columnheader')]//span[contains(@class,'ag-icon')]",
     bankBalance: "//div[@col-id='bankBalance' and not(@role='columnheader')]",
     rating: "//div[@col-id='rating' and not(@role='columnheader')]",
-    ratingImgs: "span img",
+    ratingImgs: `//div[@col-id='rating' and not(@role='columnheader')]//img`,
     totalWinnings: "//div[@col-id='totalWinnings' and not(@role='columnheader')]",
     jan: "//div[@col-id='jan' and not(@role='columnheader')]",
     feb: "//div[@col-id='feb' and not(@role='columnheader')]",
@@ -23,5 +23,9 @@ export const locators = {
     // Locators for edit
     nameEditLocator: "//div[@col-id='name' and not(@role='columnheader')]//span[@class='ag-cell-value'][1]",    
     nameInputLocator: "//div[@col-id='name' and not(@role='columnheader')]//input",
+    countryListItemLocator: "//div[contains(@class, 'ag-virtual-list-item')]//img//parent::span",
+    countryListLocator: "//*[@id='example-wrapper']/div[3]/div/div/div[2]/div",
+    rowInputLocator: "//div[contains(@class, 'ag-cell-edit-wrapper')]//input",
+    
 
 }

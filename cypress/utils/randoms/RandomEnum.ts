@@ -8,11 +8,11 @@ const randomEnumValue = (enumeration) => {
     return enumeration[enumKey];
   }
 
-function randomEnumLanguage(): Languages {
+function randomEnumLanguage(): string {
     return randomEnumValue(Languages);
 } 
 
-function randomEnumCountry(): Countries {
+function randomEnumCountry(): string {
     return randomEnumValue(Countries);
 }
 

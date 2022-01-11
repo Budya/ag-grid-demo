@@ -1,7 +1,9 @@
 import { randomEnumCountry, randomEnumLanguage } from '../utils/randoms/RandomEnum';
 import { makeRandomString } from '../utils/randoms/RandomString';
 import { getRandomNumber } from '../utils/randoms/RandomNumber';
+import { getRandomBoolean } from './randoms/RandomBoolean';
 import { PlayerModel } from '../Models/PlayerModel';
+import { getRandomRating } from './randoms/RandomRating';
 
 
 export function generatePlayer(): PlayerModel {
@@ -31,9 +33,9 @@ export function generatePlayer(): PlayerModel {
         language: randomEnumLanguage(),
         country: randomEnumCountry(),
         gameName: makeRandomString(),
-        bought: true,
+        bought: getRandomBoolean(),
         bankBalance: getRandomNumber(),
-        rating: 5,
+        rating: getRandomRating(),
         totalWinnings: getRandomNumber(),
         jan: getRandomNumber(),
         feb: getRandomNumber(),
