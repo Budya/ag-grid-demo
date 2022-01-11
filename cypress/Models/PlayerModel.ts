@@ -66,65 +66,63 @@ export class PlayerModel {
     }
     
     
-    public get bankBalance(): string {
-        return numberToCurrency.format(this._bankBalance);
+    public get bankBalance(): number {
+        return this._bankBalance
     }
 
     public get rating(): number {
         return this._rating
     }
 
-    public get totalWinnings(): string {
-        return numberToCurrency.format(this._totalWinnings);
+    public get totalWinnings(): number {
+        return this._totalWinnings;        
     }
 
-    public get jan(): string {
-        return numberToCurrency.format(this._jan);
+    public get jan(): number {
+        return this._jan;        
     }
 
-    public get feb(): string {
-        return numberToCurrency.format(this._feb);
+    public get feb(): number {
+        return this._feb;        
     }
 
-    public get mar(): string {
-        return numberToCurrency.format(this._mar);
+    public get mar(): number {
+        return this._mar;
     }
 
-    public get apr(): string {
-        return numberToCurrency.format(this._apr);
+    public get apr(): number {
+        return this._apr;
     }
 
-    public get may(): string {
-        return numberToCurrency.format(this._may);
+    public get may(): number {
+        return this._may;
     }
 
-    public get jun(): string {
-        return numberToCurrency.format(this._jun);    
+    public get jun(): number {
+        return this._jun;    
     }
 
-    public get jul(): string {
-        return numberToCurrency.format(this._jul);
+    public get jul(): number {
+        return this._jul;
     }
 
-    public get aug(): string {
-        return numberToCurrency.format(this._aug);
+    public get aug(): number {
+        return this._aug;
     }
 
-    public get sep(): string {
-        return numberToCurrency.format(this._sep);
+    public get sep(): number {
+        return this._sep;
     }
 
-    public get oct(): string {
-        return numberToCurrency.format(this._oct);
+    public get oct(): number {
+        return this._oct;
     }
 
-    public get nov(): string {
-        return numberToCurrency.format(this._nov);
+    public get nov(): number {
+        return this._nov;
     }
 
-    public get dec(): string {
-        return numberToCurrency.format(this._dec);
-    }
-
-    
+    public get dec(): number {
+        return this._dec;
+    }    
 }
