@@ -41,12 +41,12 @@ export class MainPage {
         this.setSidebarDefaultOptions();        
         cy.get('#ag-36-input').clear().type(option);
         //cy.xpath("//div[contains(@class, 'ag-virtual-list-container')]//div[contains(@class, 'ag-virtual-list-item')]").should('have.length.gt', 5);
-        //cy.xpath("//span[contains(@class, 'ag-column-select-column-label') and contains(text(), 'Language')]")
-        cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).then( el => {
-            el.get(0).click();
-        })
-        //#ag-979-input
         //cy.xpath("//span[contains(@class, 'ag-column-select-column-label') and contains(text(), 'Language')]").click();
+        cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).click();
+        // cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).then( el => {
+        //     el.get(0).click();
+        // })
+        
     }
     //#region Sidebar selection methods
     selectNameColumn() {        
