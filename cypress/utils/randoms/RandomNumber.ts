@@ -1,6 +1,4 @@
-function randomInt(min, max){
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import { randomInt } from '../randoms/RandomInt';
 
 function getRandomNumber(): number {
     const min = 1000;

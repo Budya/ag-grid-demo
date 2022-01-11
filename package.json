@@ -162,7 +162,8 @@
     "yauzl": "^2.10.0"
   },
   "scripts": {
-    "test": "node_modules/.bin/cypress open"
+    "test": "node_modules/.bin/cypress open",
+    "alltests": "node_modules/.bin/cypress run"
   },
   "keywords": [
     "cypress",
