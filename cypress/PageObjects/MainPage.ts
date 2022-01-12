@@ -1,34 +1,35 @@
-import { SidebarOptions } from "../Models/Enums/SidebarOptions";
+import { SidebarOptions, SidebarOptionsMonth } from "../Models/Enums/SidebarOptions";
 import { locators } from "./MainPageLocators";
 
 export class MainPage {
     visit() {
-       cy.visit('https://www.ag-grid.com/example.php'); 
+       cy.visit('https://www.ag-grid.com/example.php');
+       cy.title().should('include', 'datagrid'); 
     }
 
     acceptCookies() {
-        cy.get('#onetrust-accept-btn-handler').should('be.visible').click();
+        cy.get(locators.acceptCookies).should('be.visible').click();
     }
 
     setNameFilter(value: string) {        
-        cy.get('.ag-input-wrapper > .ag-floating-filter-input').should('be.visible').clear().type(value);
+        cy.get(locators.nameFilter).should('be.visible').clear().type(value);
     }
 
     openSidebar() {
-        cy.xpath("//div[contains(@class, 'ag-side-buttons')]//div[contains(@class, 'ag-side-button') and contains(@role, 'presentation')][1]").then($el => {            
+        cy.xpath(locators.sideButtonXpath).then($el => {            
             if(!$el.hasClass('ag-selected')){
-                cy.get(':nth-child(1) > .ag-side-button-button').click();
+                cy.get(locators.sideButtonCSS).click();
             }            
         });
     }
 
     private resetSidebarOptions() {
-        cy.get('#ag-36-input').clear();
-        cy.get('#ag-35-input').check().uncheck();        
+        cy.get(locators.sideBarFilterInput).clear();
+        cy.get(locators.sideBarFilterChBx).check().uncheck();        
     }
 
     private selectNameOption() {
-        cy.get('[aria-posinset="2"] > .ag-column-select-column > .ag-column-select-column-label').click();
+        cy.get(locators.nameFilterSpan).click();
     }
 
     private setSidebarDefaultOptions() {
@@ -36,18 +37,15 @@ export class MainPage {
         this.selectNameOption();
     }
 
-    private setSidebarOption(option: SidebarOptions) {
+    private setSidebarOption(option: SidebarOptions | SidebarOptionsMonth) {
         this.resetSidebarOptions();
         this.setSidebarDefaultOptions();        
-        cy.get('#ag-36-input').clear().type(option);
-        //cy.xpath("//div[contains(@class, 'ag-virtual-list-container')]//div[contains(@class, 'ag-virtual-list-item')]").should('have.length.gt', 5);
-        //cy.xpath("//span[contains(@class, 'ag-column-select-column-label') and contains(text(), 'Language')]")
-        cy.xpath(`//span[contains(@class, 'ag-column-select-column-label') and contains(text(), "${option}")]`).then( el => {
+        cy.get(locators.sideBarFilterInput).clear().type(option);        
+        cy.xpath(locators.sideBarOption(option)).then( el => {
             el.get(0).click();
-        })
-        //#ag-979-input
-        //cy.xpath("//span[contains(@class, 'ag-column-select-column-label') and contains(text(), 'Language')]").click();
+        });        
     }
+
     //#region Sidebar selection methods
     selectNameColumn() {        
         this.setSidebarDefaultOptions();
@@ -81,52 +79,8 @@ export class MainPage {
         this.setSidebarOption(SidebarOptions.TotalWinnings);
     }
 
-    selectJanColumn() {
-        this.setSidebarOption(SidebarOptions.Jan);
-    }
-
-    selectFebColumn() {
-        this.setSidebarOption(SidebarOptions.Feb);
-    }
-
-    selectMarColumn() {
-        this.setSidebarOption(SidebarOptions.Mar);        
-    }
-
-    selectAprColumn() {
-        this.setSidebarOption(SidebarOptions.Apr);
-    }
-
-    selectMayColumn() {
-        this.setSidebarOption(SidebarOptions.May);
-    }
-
-    selectJunColumn() {
-        this.setSidebarOption(SidebarOptions.Jun);
-    }
-
-    selectJulColumn() {
-        this.setSidebarOption(SidebarOptions.Jul);
-    }
-
-    selectAugColumn() {
-        this.setSidebarOption(SidebarOptions.Aug);        
-    }
-
-    selectSepColumn() {
-        this.setSidebarOption(SidebarOptions.Sep);
-    }
-
-    selectOctColumn() {
-        this.setSidebarOption(SidebarOptions.Oct);
-    }
-
-    selectNovColumn() {
-        this.setSidebarOption(SidebarOptions.Nov);
-    }
-
-    selectDecColumn() {
-        this.setSidebarOption(SidebarOptions.Dec);
+    selectMonthColumn(month: SidebarOptionsMonth) {
+        this.setSidebarOption(month);
     }
 //#endregion
     
@@ -141,13 +95,13 @@ export class MainPage {
     changeLanguage(language: string) {        
         this.selectLanguageColumn();
         cy.xpath(locators.language).click().dblclick();
-        cy.xpath(`${locators.language}//div[@class='ag-picker-field-icon']`).click();        
-        cy.xpath(`//*[contains(text(), '${language}')]`).then( el => {                        
+        cy.xpath(locators.languageDropDownPicker()).click();        
+        cy.xpath(locators.languageListItem(language)).then( el => {                        
             el.get(0).click();
         });
     }
 
-    scrollAndSetCountry(searchText, listItemLocator, listLocator) {
+    private scrollAndSetCountry(searchText, listItemLocator, listLocator) {
         
         cy.xpath(listItemLocator).then( el => {
             if(!el.text().includes(searchText)) {
@@ -197,78 +151,10 @@ export class MainPage {
         cy.xpath(locators.rowInputLocator).type(totalWinnings).type('{enter}');
     }
     
-    changeJanAmount(amount) {
-        this.selectJanColumn();
-        cy.xpath(locators.jan).click().dblclick();
+    changeMonthAmount(month, amount) {        
+        this.selectMonthColumn(month)
+        cy.xpath(locators.monthCol(month)).click().dblclick();
         cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
     }
-
-    changeFebAmount(amount) {
-        this.selectFebColumn();
-        cy.xpath(locators.feb).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeMarAmount(amount) {
-        this.selectMarColumn();
-        cy.xpath(locators.mar).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeAprAmount(amount) {
-        this.selectAprColumn();
-        cy.xpath(locators.apr).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeMayAmount(amount) {
-        this.selectMayColumn();
-        cy.xpath(locators.may).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeJunAmount(amount) {
-        this.selectJunColumn();
-        cy.xpath(locators.jun).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeJulAmount(amount) {
-        this.selectJulColumn();
-        cy.xpath(locators.jul).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeAugAmount(amount) {
-        this.selectAugColumn();
-        cy.xpath(locators.aug).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeSepAmount(amount) {
-        this.selectSepColumn();
-        cy.xpath(locators.sep).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeOctAmount(amount) {
-        this.selectOctColumn();
-        cy.xpath(locators.oct).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeNovAmount(amount) {
-        this.selectNovColumn();
-        cy.xpath(locators.nov).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-    changeDecAmount(amount) {
-        this.selectDecColumn();
-        cy.xpath(locators.dec).click().dblclick();
-        cy.xpath(locators.rowInputLocator).type(amount).type('{enter}');
-    }
-
-
 }
 

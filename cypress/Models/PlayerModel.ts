@@ -1,5 +1,3 @@
-import { numberToCurrency } from '../utils/CurrencyFormatter';
-
 export class PlayerModel {
     private _name: string
     private _language: string   
@@ -124,5 +122,46 @@ export class PlayerModel {
 
     public get dec(): number {
         return this._dec;
-    }    
+    }
+    
+    public getMonthAmount(month) {
+        switch (month) {
+            case "jan":
+                return this._jan;
+                break;
+            case "feb":
+                return this._feb;
+                break;
+            case "mar":
+                return this._mar;
+                break;
+            case "apr":
+                return this._apr;
+                break;
+            case "may":
+                return this._may;
+                break;
+            case "jun":
+                return this._jun;
+                break;
+            case "jul":
+                return this._jul;
+                break;
+            case "aug":
+                return this._aug;
+                break;
+            case "sep":
+                return this._sep;
+                break;
+            case "oct":
+                return this._oct;
+                break;
+            case "nov":
+                return this._nov;
+                break;
+            case "dec":
+                return this._dec;
+                break;
+        }
+    }
 }

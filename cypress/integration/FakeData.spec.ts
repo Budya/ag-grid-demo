@@ -3,6 +3,7 @@ import { PlayerModel } from '../Models/PlayerModel';
 import { fakeUser } from '../testdata/fakeUser';
 import { locators } from '../PageObjects/MainPageLocators';
 import { numberToCurrency } from '../utils/CurrencyFormatter';
+import { SidebarOptionsMonth } from '../Models/Enums/SidebarOptions';
 
 
 describe('AG-grid test', function() {
@@ -46,40 +47,9 @@ describe('AG-grid test', function() {
         mainPage.selectWinningsColumn();
         cy.xpath(locators.totalWinnings).should('include.text', numberToCurrency.format(player.totalWinnings));
 
-        mainPage.selectJanColumn();
-        cy.xpath(locators.jan).should('include.text', numberToCurrency.format(player.jan));
-
-        mainPage.selectFebColumn();
-        cy.xpath(locators.feb).should('include.text', numberToCurrency.format(player.feb));
-
-        mainPage.selectMarColumn();
-        cy.xpath(locators.mar).should('include.text', numberToCurrency.format(player.mar));
-
-        mainPage.selectAprColumn();
-        cy.xpath(locators.apr).should('include.text', numberToCurrency.format(player.apr));
-
-        mainPage.selectMayColumn();
-        cy.xpath(locators.may).should('include.text', numberToCurrency.format(player.may));
-
-        mainPage.selectJunColumn();
-        cy.xpath(locators.jun).should('include.text', numberToCurrency.format(player.jun));
-
-        mainPage.selectJulColumn();
-        cy.xpath(locators.jul).should('include.text', numberToCurrency.format(player.jul));
-
-        mainPage.selectAugColumn();
-        cy.xpath(locators.aug).should('include.text', numberToCurrency.format(player.aug));
-
-        mainPage.selectSepColumn();
-        cy.xpath(locators.sep).should('include.text', numberToCurrency.format(player.sep));
-
-        mainPage.selectOctColumn();
-        cy.xpath(locators.oct).should('include.text', numberToCurrency.format(player.oct));
-
-        mainPage.selectNovColumn();
-        cy.xpath(locators.nov).should('include.text', numberToCurrency.format(player.nov));
-
-        mainPage.selectDecColumn();
-        cy.xpath(locators.dec).should('include.text', numberToCurrency.format(player.dec));
+        for(let month of Object.keys(SidebarOptionsMonth)) {
+            mainPage.selectMonthColumn(SidebarOptionsMonth[month]);
+            cy.xpath(locators.monthCol(month)).should('include.text', numberToCurrency.format(player.getMonthAmount(month.toLowerCase())));
+        };
     });    
 });
