@@ -163,7 +163,7 @@
   },
   "scripts": {
     "test": "node_modules/.bin/cypress open",
-    "alltests": "node_modules/.bin/cypress run"
+    "alltests": "node_modules/.bin/cypress run --browser chrome"
   },
   "keywords": [
     "cypress",
