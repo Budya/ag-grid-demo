@@ -1,4 +1,9 @@
 {
   "projectId": "z7xdkf",
-  "defaultCommandTimeout":4000
+  "defaultCommandTimeout":4000,
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "results/results-[hash].xml"
+  },
+  "video": false
 }
