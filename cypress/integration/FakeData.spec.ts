@@ -6,7 +6,7 @@ import { numberToCurrency } from '../utils/CurrencyFormatter';
 
 
 describe('AG-grid test', function() {
-    it('Facke data assertion', function() {
+    it.skip('Facke data assertion', function() {
         const mainPage = new MainPage();
         const testData = fakeUser;
         const player = new PlayerModel(testData);

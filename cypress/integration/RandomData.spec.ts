@@ -5,7 +5,7 @@ import { numberToCurrency } from '../utils/CurrencyFormatter';
 
 
 describe('AG-grid test', function() {
-    it('Random data setting & assertion', function() {
+    it.skip('Random data setting & assertion', function() {
         const mainPage = new MainPage();        
         const player = generatePlayer();
         const oldName = "Tony Smith"               
